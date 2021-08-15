@@ -50,6 +50,28 @@ public class Main {
         ikea_chair.fall();
         System.out.println("Chair has " + ikea_legs.getQuantity() + " legs");
 //______________________________________________________________________________________
+        Car mersedes = new Car("S220");
+        Car.ActionExample mersedes_voice = new Car.ActionExample();
+        mersedes.start();
+        mersedes_voice.getAction();
+
+        System.out.println("");
+        Car audi = new Car("A100");
+        Car.ActionExample audi_voice = new Car.ActionExample();
+        audi.start();
+        audi_voice.getAction();
+
+        System.out.println("");
+        Bicycle aist = new Bicycle("Aist");
+        Bicycle.ActionExample aist_voice = new Bicycle.ActionExample();
+        aist.start();
+        aist_voice.getAction();
+
+        System.out.println("");
+        Snail rosa = new Snail("Rosa");
+        Snail.ActionExample rosa_voice = new Snail.ActionExample();
+        rosa.start();
+        rosa_voice.getAction();
 
     }
 }
