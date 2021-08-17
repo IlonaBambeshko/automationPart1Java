@@ -1,4 +1,4 @@
-package by.automation.part1.lesson5;
+package by.automation.part1.lesson5.task_1;
 
 public class Bird {
     private static double allWeight;
@@ -11,6 +11,7 @@ public class Bird {
     }
 
     Bird(String birdKind) {
+        this.birdKind = birdKind;
         weight = 0;
     }
 

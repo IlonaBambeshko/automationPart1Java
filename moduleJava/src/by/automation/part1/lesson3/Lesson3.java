@@ -1,4 +1,4 @@
-package by.automation.part1;
+package by.automation.part1.lesson3;
 
 import java.util.Scanner;
 

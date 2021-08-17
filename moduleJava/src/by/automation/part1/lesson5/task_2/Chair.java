@@ -1,4 +1,4 @@
-package by.automation.part1.lesson5;
+package by.automation.part1.lesson5.task_2;
 
 public class Chair {
 

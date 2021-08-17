@@ -1,4 +1,4 @@
-package by.automation.part1.lesson5;
+package by.automation.part1.lesson5.task_3;
 
 public class Snail {
     private String name;
