@@ -1,0 +1,14 @@
+        -- Common --
+-- Remove non-project files from repository (.iml)
+-- Each task must be placed in each separate folder (Task_1, Task_2, Task_3)
+-- Also fix packaging for previous classes
+-- Use CTRL+ALT+L
+
+        -- Task 1 --
+-- In constructor Bird(String birdKind) for what here birdKind variable
+-- What about using static methods in Main class?
+
+        -- Task 2 --
+
+        -- Task 3 --
+--  What about using static methods in Main class?
