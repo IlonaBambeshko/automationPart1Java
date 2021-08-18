@@ -6,7 +6,7 @@ public class Bird {
     private String birdKind;
     public double weight;
 
-    public static void weightOfAllBirds() {
+    public static void printWeightOfAllBirds() {
         System.out.println("Weight of all birds = " + allWeight);
     }
 
