@@ -3,7 +3,7 @@ package by.automation.part1.lesson5.task_1;
 public class Bird {
     private static double allWeight;
 
-    private String birdKind;
+    private final String birdKind;
     public double weight;
 
     public static void printWeightOfAllBirds() {

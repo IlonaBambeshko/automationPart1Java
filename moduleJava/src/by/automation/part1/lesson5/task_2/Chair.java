@@ -2,8 +2,8 @@ package by.automation.part1.lesson5.task_2;
 
 public class Chair {
 
-    private String model;
-    private String color;
+    private final String model;
+    private final String color;
 
     public Chair(String model, String color) {
         this.model = model;
