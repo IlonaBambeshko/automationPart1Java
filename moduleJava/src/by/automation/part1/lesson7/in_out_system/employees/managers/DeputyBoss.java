@@ -1,6 +1,6 @@
 package by.automation.part1.lesson7.in_out_system.employees.managers;
 
-import by.automation.part1.lesson7.in_out_system.Room123;
+import by.automation.part1.lesson7.in_out_system.rooms.Room123;
 
 public class DeputyBoss extends Manager implements Room123 {
 	public DeputyBoss(String firstName, String lastName) {
