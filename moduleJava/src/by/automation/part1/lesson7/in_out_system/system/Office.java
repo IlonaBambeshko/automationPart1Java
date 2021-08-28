@@ -45,11 +45,11 @@ public class Office {
 		System.out.println("Information about employee " + name + " " + lastName + " added into registration system");
 	}
 
-	public void getTakenPlaceInOffice() {
+	public void getInfoAboutTakenPlaces() {
 		System.out.println("There are " + takenPlaceInOffice + " taken places in Office");
 	}
 
-	public void getFreePlacesInOffice() {
+	public void getInfoAboutFreePlaces() {
 		int freePlaces = maximumPlacesInOffice - takenPlaceInOffice;
 		System.out.println("There are " + freePlaces + " free places in Office");
 	}
