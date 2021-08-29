@@ -15,11 +15,10 @@ public class Office {
 		this.maximumPlacesInOffice = maximumPlacesInOffice;
 	}
 
-	//	refactor method according to exception theme
-	public void getPlaceInOffice() throws Exception {
+	public void getPlaceInOffice() throws ValidatorOfAvailiablePlacesException {
 		takenPlaceInOffice++;
 		if (takenPlaceInOffice > maximumPlacesInOffice) {
-			throw new Exception("Oops! All seats in office are taken! Try another day");
+			throw new ValidatorOfAvailiablePlacesException("Error! All " + maximumPlacesInOffice + " seats in office are taken!");
 		}
 	}
 
@@ -27,7 +26,7 @@ public class Office {
 		return randomUUID().toString();
 	}
 
-	public void registerEmployee(Employee employee) throws Exception {
+	public void registerEmployee(Employee employee) throws ValidatorOfAvailiablePlacesException {
 		getPlaceInOffice();
 		employee.idCard = generateCodeForIDCard();
 		addEmployeeDataIntoSystem(employee.firstName, employee.lastName, employee.idCard);
@@ -45,6 +44,14 @@ public class Office {
 		System.out.println("Information about employee " + name + " " + lastName + " added into registration system");
 	}
 
+	public void registerEmployeeWithoutIDCard(Employee employee) throws ValidatorOfAvailiablePlacesException {
+		getPlaceInOffice();
+		addEmployeeDataIntoSystem(employee.firstName, employee.lastName, employee.idCard);
+		employee.status = Status.OUTOFOFFICE;
+		System.out.println(employee.firstName + " " + employee.lastName + " " + "registered without card");
+		System.out.println(employee.firstName + " " + employee.lastName + " " + "has status: " + employee.status + "\n");
+	}
+
 	public void getInfoAboutTakenPlaces() {
 		System.out.println("There are " + takenPlaceInOffice + " taken places in Office");
 	}
@@ -59,7 +66,7 @@ public class Office {
 		for (ArrayList employeeArray : listOfAllEmployeesInOffice) {
 			if (employeeArray.get(0) == firstName) {
 				if (employeeArray.get(1) == lastName) {
-					if (employeeArray.get(2) == idCard) {
+					if (employeeArray.get(2) == idCard && idCard != "empty card") {
 						return "Has IDCard and registered in system";
 					}
 					return "Registered but have no ID card";
@@ -67,7 +74,6 @@ public class Office {
 			}
 		}
 		return "Is not registered in system";
-//		return "Employee checked";
 	}
 
 }
