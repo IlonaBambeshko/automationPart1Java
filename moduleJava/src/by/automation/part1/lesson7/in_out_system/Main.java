@@ -1,14 +1,15 @@
 package by.automation.part1.lesson7.in_out_system;
 
+import by.automation.part1.lesson7.in_out_system.employees.Employee;
 import by.automation.part1.lesson7.in_out_system.employees.managers.Boss;
 import by.automation.part1.lesson7.in_out_system.employees.managers.Manager;
-import by.automation.part1.lesson7.in_out_system.rooms.GenericRoom;
+import by.automation.part1.lesson7.in_out_system.rooms.Cabinet;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 import by.automation.part1.lesson7.in_out_system.system.ValidatorOfAvailiablePlacesException;
 
 public class Main {
 	public static void main(String[] args) {
-		Office officeManager = new Office(3);
+		Office officeManager = new Office(15);
 
 		Manager manager1 = new Manager("Ivan", "Ivanov");
 		Manager manager2 = new Manager("Ilia", "Petrov");
@@ -36,20 +37,26 @@ public class Main {
 		} catch (ValidatorOfAvailiablePlacesException e) {
 			e.printStackTrace();
 		}
-//
-//		officeManager.getInfoAboutTakenPlaces();
-//		officeManager.getInfoAboutFreePlaces();
-//
+
+		officeManager.getInfoAboutTakenPlaces();
+		officeManager.getInfoAboutFreePlaces();
+
 		manager1.enterToOffice();
 		manager2.enterToOffice();
 		manager3.enterToOffice();
 		manager4.enterToOffice();
 
-//		officeManager.registerEmployee(sergeyAntonov);
-//		sergeyAntonov.enterToOffice();
-//		sergeyAntonov.pushDoorToRoom123();
+		try {
+			officeManager.registerEmployee(sergeyAntonov);
+		} catch (ValidatorOfAvailiablePlacesException e) {
+			e.printStackTrace();
+		}
+		sergeyAntonov.enterToOffice();
+		sergeyAntonov.pushDoorToRoom123();
 
-
+		Employee[] employees = {manager1, manager2};
+		Cabinet<Employee> cabinet = new Cabinet<>(employees);
+		cabinet.printEmployeesInCabinet();
 
 
 	}

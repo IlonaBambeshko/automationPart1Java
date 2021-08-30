@@ -35,5 +35,4 @@ public class Employee {
 				System.out.println("Something wrong happened");
 		}
 	}
-
 }
