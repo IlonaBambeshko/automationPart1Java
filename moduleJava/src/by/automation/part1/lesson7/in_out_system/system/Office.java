@@ -35,6 +35,12 @@ public class Office {
 		System.out.println(employee.firstName + " " + employee.lastName + " " + "has status: " + employee.status + "\n");
 	}
 
+	public void registerSeveralEmployees(Employee[] employees) throws ValidatorOfAvailiablePlacesException {
+		for (Employee employee : employees) {
+			registerEmployee(employee);
+		}
+	}
+
 	public static void addEmployeeDataIntoSystem(String name, String lastName, String idCard) {
 		ArrayList<String> listOfEmployee = new ArrayList<>();
 		listOfEmployee.add(name);
