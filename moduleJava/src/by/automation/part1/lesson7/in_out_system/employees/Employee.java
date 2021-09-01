@@ -3,6 +3,8 @@ package by.automation.part1.lesson7.in_out_system.employees;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 import by.automation.part1.lesson7.in_out_system.system.Status;
 
+// TODO: 9/1/2021 Why this class not abstract?
+// [Pavel.Chachotkin]
 public class Employee {
 	public final String firstName;
 	public final String lastName;
@@ -14,6 +16,8 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
+	// TODO: 9/1/2021 Replace sout with throwing exceptions
+	// [Pavel.Chachotkin]
 	public void enterToOffice() {
 		String result = Office.checkEmployeeInEmployeeList(firstName, lastName, idCard);
 		switch (result) {

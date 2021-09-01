@@ -17,6 +17,8 @@ public class Boss extends Manager implements Room123 {
 				System.out.println(messageOfSuccess);
 				break;
 			default:
+				// TODO: 9/1/2021 Replace sout with throwing exceptions or error
+				// [Pavel.Chachotkin]
 				System.out.println("Boss is not in office and can't come to Room 123!");
 		}
 	}
