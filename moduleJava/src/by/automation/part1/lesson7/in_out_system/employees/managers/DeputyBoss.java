@@ -11,8 +11,8 @@ public class DeputyBoss extends Manager implements Room123 {
 	public void pushDoorToRoom123() {
 		String messageOfSuccess = "Deputy boss " + firstName + " " + lastName + " came to Room 123!";
 		switch (status) {
-			case INOFFICE:
-			case INOFFICEWITHOUTIDCARD:
+			case IN_OFFICE:
+			case IN_OFFICE_WITHOUT_CARD:
 				System.out.println(messageOfSuccess);
 				break;
 			default:
