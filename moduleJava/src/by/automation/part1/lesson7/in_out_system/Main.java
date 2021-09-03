@@ -3,11 +3,12 @@ package by.automation.part1.lesson7.in_out_system;
 import by.automation.part1.lesson7.in_out_system.employees.Employee;
 import by.automation.part1.lesson7.in_out_system.employees.ITSpecialist;
 import by.automation.part1.lesson7.in_out_system.employees.managers.*;
+import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnter;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws EmployeeHasNotAccessToEnter {
 		Office officeManager = new Office(15);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");
