@@ -10,7 +10,7 @@ import static java.util.UUID.randomUUID;
 public class Office {
 	private final int maximumPlacesInOffice;
 	private int takenPlaceInOffice = 0;
-	static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<Employee>();
+	static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 
 	public Office(int maximumPlacesInOffice) {
 		this.maximumPlacesInOffice = maximumPlacesInOffice;
@@ -63,8 +63,8 @@ public class Office {
 
 	public static String checkEmployeeInEmployeeList(String firstName, String lastName, String idCard) {
 		System.out.println(listOfAllEmployeesInOffice);
-		for (Employee employee : listOfAllEmployeesInOffice) { // TODO: 9/1/2021 Array list must have type ! [Pavel.Chachotkin] - done
-			if (employee.firstName.equals(firstName)) { // TODO: 9/1/2021 Strings can not be compare by '=='. objects must compare by .equals() [Pavel.Chachotkin] - done
+		for (Employee employee : listOfAllEmployeesInOffice) {
+			if (employee.firstName.equals(firstName)) {
 				if (employee.lastName.equals(lastName)) {
 					if (employee.idCard.equals(idCard) && !idCard.equals("empty card")) {
 						return "Has IDCard and registered in system";
