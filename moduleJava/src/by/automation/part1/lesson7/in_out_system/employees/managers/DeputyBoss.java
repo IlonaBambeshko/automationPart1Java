@@ -12,11 +12,8 @@ public class DeputyBoss extends Manager implements Room123 {
 	public void pushDoorToRoom123() throws EmployeeIsNotInOfficeException {
 		String messageOfSuccess = "Deputy boss " + firstName + " " + lastName + " came to Room 123!";
 		switch (status) {
-			case NOT_REGISTERED:
-			case REGISTERED_AND_OUT_OF_OFFICE:
-				throw new EmployeeIsNotInOfficeException("Deputy boss is not in office and can't come to Room 123!");
-			default:
-				System.out.println(messageOfSuccess);
+			case NOT_REGISTERED, REGISTERED_AND_OUT_OF_OFFICE -> throw new EmployeeIsNotInOfficeException("Deputy boss is not in office and can't come to Room 123!");
+			default -> System.out.println(messageOfSuccess);
 		}
 	}
 }
