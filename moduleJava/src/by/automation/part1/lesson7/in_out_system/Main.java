@@ -3,12 +3,14 @@ package by.automation.part1.lesson7.in_out_system;
 import by.automation.part1.lesson7.in_out_system.employees.Employee;
 import by.automation.part1.lesson7.in_out_system.employees.ITSpecialist;
 import by.automation.part1.lesson7.in_out_system.employees.managers.*;
+import by.automation.part1.lesson7.in_out_system.rooms.Cabinet;
 import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnter;
+import by.automation.part1.lesson7.in_out_system.system.EmployeeIsNotInOfficeException;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
 
 public class Main {
-	public static void main(String[] args) throws EmployeeHasNotAccessToEnter {
+	public static void main(String[] args) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException, EmployeeIsNotInOfficeException {
 		Office officeManager = new Office(15);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");
@@ -18,33 +20,19 @@ public class Main {
 		Boss sergeyAntonov = new Boss("Sergey", "Antonov");
 
 		Employee[] employees = {ivanIvanov, iliaPetrov, alexKozlov, sergeyAntonov};
-		try {
-			officeManager.registerEmployee(employees);
-		} catch (NoAvailablePlacesException e) {
-			e.printStackTrace();
-		}
+		officeManager.registerEmployee(employees);
 
-		ivanIvanov.enterToOffice();
-		iliaPetrov.enterToOffice();
-		yuraFilimonov.enterToOffice();
-		alexKozlov.enterToOffice();
+		officeManager.getAccessToEnter(ivanIvanov);
+		officeManager.getAccessToEnterWithoutCard(iliaPetrov);
+		officeManager.getAccessToEnterWithoutCard(yuraFilimonov);
+		System.out.println("There are " + Office.getFreePlacesCount() + " free places in Office\n");
 
-		officeManager.getInfoAboutTakenPlaces();
-		officeManager.getInfoAboutFreePlaces();
-//
-//
-//		try {
-//			officeManager.registerEmployee(sergeyAntonov);
-//		} catch (ValidatorOfAvailiablePlacesException e) {
-//			e.printStackTrace();
-//		}
-//		sergeyAntonov.enterToOffice();
-//		sergeyAntonov.pushDoorToRoom123();
-//
-//		Employee[] employees = {ivanIvanov, iliaPetrov};
-//		Cabinet<Employee> cabinet = new Cabinet<>(employees);
-//		cabinet.printEmployeesInCabinet();
+		officeManager.getAccessToEnter(sergeyAntonov);
+		sergeyAntonov.pushDoorToRoom123();
 
+		Employee[] employees2 = {ivanIvanov, iliaPetrov};
+		Cabinet<Employee> cabinet = new Cabinet<>(employees2);
+		cabinet.printEmployeesInCabinet();
 
 	}
 }

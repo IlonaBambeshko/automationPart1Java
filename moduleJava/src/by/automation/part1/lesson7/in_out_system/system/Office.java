@@ -8,28 +8,19 @@ import static java.util.UUID.randomUUID;
 
 // TODO: 9/1/2021 Check access modifiers for methods [Pavel.Chachotkin]
 public class Office {
-	private final int maximumPlacesInOffice;
-	private int takenPlaceInOffice = 0;
+	private static int maximumPlacesInOffice;
+	public static int takenPlaceInOffice = 0;
 	static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 
 	public Office(int maximumPlacesInOffice) {
 		this.maximumPlacesInOffice = maximumPlacesInOffice;
 	}
 
-	public int getFreePlaceInOffice() {
-		takenPlaceInOffice++;
-		return takenPlaceInOffice;
-	}
-
 	public static String generateCodeForIDCard() {
 		return randomUUID().toString();
 	}
 
-	public void registerEmployee(Employee employee) throws NoAvailablePlacesException {
-		int placeToTake = getFreePlaceInOffice();
-		if (placeToTake > maximumPlacesInOffice) {
-			throw new NoAvailablePlacesException("Error! All " + maximumPlacesInOffice + " seats in office are taken!");
-		}
+	public void registerEmployee(Employee employee) {
 		employee.idCard = generateCodeForIDCard();
 		listOfAllEmployeesInOffice.add(employee);
 		employee.status = Status.REGISTERED_AND_OUT_OF_OFFICE;
@@ -37,40 +28,46 @@ public class Office {
 		System.out.println(employee.firstName + " " + employee.lastName + " " + "has status: " + employee.status + "\n");
 	}
 
-	public void registerEmployee(Employee[] employees) throws NoAvailablePlacesException {
+	public void registerEmployee(Employee[] employees) {
 		for (Employee employee : employees) {
 			registerEmployee(employee);
 		}
 	}
 
-//	public void registerEmployeeWithoutIDCard(Employee employee) throws NoAvailablePlacesException {
-//		getFreePlaceInOffice();
-//		addEmployeeDataIntoSystem(employee.firstName, employee.lastName, employee.idCard);
-//		employee.status = Status.REGISTERED_AND_OUT_OF_OFFICE; // TODO: 9/1/2021 Is this right status? [Pavel.Chachotkin]
-//		System.out.println(employee.firstName + " " + employee.lastName + " " + "registered without card");
-//		System.out.println(employee.firstName + " " + employee.lastName + " " + "has status: " + employee.status + "\n");
-//	}
-
-
-	public void getInfoAboutTakenPlaces() {
-		System.out.println("There are " + takenPlaceInOffice + " taken places in Office");
+	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		employee.enterToOffice(true);
 	}
 
-	public void getInfoAboutFreePlaces() {
-		int freePlaces = maximumPlacesInOffice - takenPlaceInOffice;
-		System.out.println("There are " + freePlaces + " free places in Office");
+	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		for (Employee employee : employees) {
+			employee.enterToOffice(true);
+		}
 	}
 
-	public static String checkEmployeeInEmployeeList(String firstName, String lastName, String idCard) {
-		System.out.println(listOfAllEmployeesInOffice);
+	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		employee.enterToOffice(false);
+	}
+
+	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		for (Employee employee : employees) {
+			employee.enterToOffice(false);
+		}
+	}
+
+	public static int getFreePlacesCount() {
+		return maximumPlacesInOffice - takenPlaceInOffice;
+	}
+
+	//	TO REFACTOR IN FUTURE
+	public static String checkEmployeeInEmployeeList(String firstName, String lastName, String idCard, boolean withCard) {
 		for (Employee employee : listOfAllEmployeesInOffice) {
 			if (employee.firstName.equals(firstName)) {
-				if (employee.lastName.equals(lastName)) {
+				if (employee.lastName.equals(lastName) && withCard == true) {
 					if (employee.idCard.equals(idCard) && !idCard.equals("empty card")) {
 						return "Has IDCard and registered in system";
 					}
-					return "Registered but have no ID card";
 				}
+				return "Registered but have no ID card";
 			}
 		}
 		return "Is not registered in system";

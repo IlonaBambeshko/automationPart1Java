@@ -1,12 +1,13 @@
 package by.automation.part1.lesson7.in_out_system.employees;
 
 import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnter;
+import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 import by.automation.part1.lesson7.in_out_system.system.Status;
 
-// TODO: 9/1/2021 Why this class not abstract?
-// [Pavel.Chachotkin]
-public class Employee {
+import static by.automation.part1.lesson7.in_out_system.system.Office.getFreePlacesCount;
+
+public abstract class Employee {
 	public final String firstName;
 	public final String lastName;
 	public String idCard = "empty card";
@@ -17,8 +18,12 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public void enterToOffice() throws EmployeeHasNotAccessToEnter {
-		String result = Office.checkEmployeeInEmployeeList(firstName, lastName, idCard);
+	public void enterToOffice(boolean hasCard) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		if (getFreePlacesCount() <= 0) {
+			throw new NoAvailablePlacesException("Error! There are no free places in Office!");
+		}
+		Office.takenPlaceInOffice++;
+		String result = Office.checkEmployeeInEmployeeList(firstName, lastName, idCard, hasCard);
 		switch (result) {
 			case "Has IDCard and registered in system":
 				this.status = Status.IN_OFFICE;
