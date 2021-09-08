@@ -8,6 +8,7 @@ import by.automation.part1.lesson7.in_out_system.system.Status;
 import static by.automation.part1.lesson7.in_out_system.system.Office.getFreePlacesCount;
 
 public abstract class Employee {
+	// TODO: 9/8/2021 Fix encapsulation [Pavel.Chachotkin]
 	public final String firstName;
 	public final String lastName;
 	public String idCard = "empty card";
@@ -18,8 +19,10 @@ public abstract class Employee {
 		this.lastName = lastName;
 	}
 
+	// TODO: 9/8/2021 Move this logic to Office class. A lot of addictions. [Pavel.Chachotkin]
 	public void enterToOffice(boolean hasCard) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
 		if (getFreePlacesCount() <= 0) {
+			// TODO: 9/8/2021 This exception must be thrown from other class (Exp: FreePlacesValidator) [Pavel.Chachotkin]
 			throw new NoAvailablePlacesException("Error! There are no free places in Office!");
 		}
 		Office.takenPlaceInOffice++;

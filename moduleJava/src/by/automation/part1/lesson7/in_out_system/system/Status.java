@@ -1,6 +1,7 @@
 package by.automation.part1.lesson7.in_out_system.system;
 
 public enum Status {
+	// TODO: 9/8/2021 For what status NOT_REGISTERED ? [Pavel.Chachotkin]
 	NOT_REGISTERED("Employee is not registered"),
 	REGISTERED_AND_OUT_OF_OFFICE("Employee is registered but out of Office"),
 	IN_OFFICE("Employee is in Office"),

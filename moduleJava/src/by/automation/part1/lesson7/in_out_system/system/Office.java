@@ -13,10 +13,12 @@ public class Office {
 	static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 
 	public Office(int maximumPlacesInOffice) {
+		// TODO: 9/8/2021 Do we should use 'this' keyword for static field? [Pavel.Chachotkin]
 		this.maximumPlacesInOffice = maximumPlacesInOffice;
 	}
 
 	public static String generateCodeForIDCard() {
+		// TODO: 9/8/2021 Code must be 10th symbols length [Pavel.Chachotkin]
 		return randomUUID().toString();
 	}
 

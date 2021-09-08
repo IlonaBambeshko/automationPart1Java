@@ -9,7 +9,7 @@ public class Cabinet<T extends Employee> {
 		this.employees = employees;
 	}
 
-
+	// TODO: 9/8/2021 For what this method? [Pavel.Chachotkin]
 	public void printEmployeesInCabinet() {
 		for (T employee : employees) {
 			System.out.println(employee.firstName + " " + employee.lastName + " is in Cabinet");
