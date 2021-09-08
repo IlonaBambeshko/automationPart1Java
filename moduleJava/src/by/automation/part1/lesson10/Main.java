@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 	public static void main(String[] args) {
+		// DONE !! :-)
 //		Task 1: маски
 
 //		а) 123-45-67
@@ -16,12 +17,17 @@ public class Main {
 //		в) +375(25)123-45-67
 //		\+\d{3}\(\d{2}\)\d{3}\-\d{2}\-\d{2}
 
+		// FIXME: 9/8/2021 Does not work for text like:
+		//asdf adsf. asdfasdf . as.
 		divideTextIntoSentences();
 		System.out.println();
 
+		// FIXME: 9/8/2021 Does not work for text like:
+		//As we know an elefant a mouse
 		divideTextIntoWords();
 		System.out.println();
 
+		// Method must catch a list of strings (Task). But Okay :-)
 		joinIntoString();
 	}
 
