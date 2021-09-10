@@ -1,7 +1,7 @@
 package by.automation.part1.lesson7.in_out_system.employees;
 
 import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnter;
-import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
+import by.automation.part1.lesson7.in_out_system.system.FreePlacesValidator;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 import by.automation.part1.lesson7.in_out_system.system.Status;
 
@@ -12,7 +12,7 @@ public abstract class Employee {
 	public final String firstName;
 	public final String lastName;
 	public String idCard = "empty card";
-	public Status status = Status.NOT_REGISTERED;
+	public Status status = Status.OUT_OF_OFFICE;
 
 	protected Employee(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -20,10 +20,10 @@ public abstract class Employee {
 	}
 
 	// TODO: 9/8/2021 Move this logic to Office class. A lot of addictions. [Pavel.Chachotkin]
-	public void enterToOffice(boolean hasCard) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void enterToOffice(boolean hasCard) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
 		if (getFreePlacesCount() <= 0) {
 			// TODO: 9/8/2021 This exception must be thrown from other class (Exp: FreePlacesValidator) [Pavel.Chachotkin]
-			throw new NoAvailablePlacesException("Error! There are no free places in Office!");
+			throw new FreePlacesValidator("Error! There are no free places in Office!");
 		}
 		Office.takenPlaceInOffice++;
 		String result = Office.checkEmployeeInEmployeeList(firstName, lastName, idCard, hasCard);

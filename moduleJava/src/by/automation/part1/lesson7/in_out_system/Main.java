@@ -6,11 +6,11 @@ import by.automation.part1.lesson7.in_out_system.employees.managers.*;
 import by.automation.part1.lesson7.in_out_system.rooms.Cabinet;
 import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnter;
 import by.automation.part1.lesson7.in_out_system.system.EmployeeIsNotInOfficeException;
+import by.automation.part1.lesson7.in_out_system.system.FreePlacesValidator;
 import by.automation.part1.lesson7.in_out_system.system.Office;
-import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
 
 public class Main {
-	public static void main(String[] args) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException, EmployeeIsNotInOfficeException {
+	public static void main(String[] args) throws EmployeeHasNotAccessToEnter, EmployeeIsNotInOfficeException, FreePlacesValidator {
 		Office officeManager = new Office(15);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");
@@ -32,7 +32,9 @@ public class Main {
 
 		Employee[] employees2 = {ivanIvanov, iliaPetrov};
 		Cabinet<Employee> cabinet = new Cabinet<>(employees2);
-		cabinet.printEmployeesInCabinet();
+		for (Employee employee : cabinet.employees) {
+			System.out.println(employee.firstName + " " + employee.lastName + " is in Cabinet");;
+		}
 
 	}
 }

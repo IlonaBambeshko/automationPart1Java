@@ -13,19 +13,18 @@ public class Office {
 	static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 
 	public Office(int maximumPlacesInOffice) {
-		// TODO: 9/8/2021 Do we should use 'this' keyword for static field? [Pavel.Chachotkin]
-		this.maximumPlacesInOffice = maximumPlacesInOffice;
+		Office.maximumPlacesInOffice = maximumPlacesInOffice;
 	}
 
 	public static String generateCodeForIDCard() {
-		// TODO: 9/8/2021 Code must be 10th symbols length [Pavel.Chachotkin]
-		return randomUUID().toString();
+		return randomUUID().toString().replaceAll("-", "").substring(0, 10);
 	}
 
 	public void registerEmployee(Employee employee) {
 		employee.idCard = generateCodeForIDCard();
+		System.out.println(employee.idCard);
 		listOfAllEmployeesInOffice.add(employee);
-		employee.status = Status.REGISTERED_AND_OUT_OF_OFFICE;
+		employee.status = Status.OUT_OF_OFFICE;
 		System.out.println(employee.firstName + " " + employee.lastName + " " + "registered and got ID card with code: " + employee.idCard);
 		System.out.println(employee.firstName + " " + employee.lastName + " " + "has status: " + employee.status + "\n");
 	}
@@ -36,21 +35,21 @@ public class Office {
 		}
 	}
 
-	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
 		employee.enterToOffice(true);
 	}
 
-	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
 		for (Employee employee : employees) {
 			employee.enterToOffice(true);
 		}
 	}
 
-	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
 		employee.enterToOffice(false);
 	}
 
-	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
 		for (Employee employee : employees) {
 			employee.enterToOffice(false);
 		}
@@ -64,7 +63,7 @@ public class Office {
 	public static String checkEmployeeInEmployeeList(String firstName, String lastName, String idCard, boolean withCard) {
 		for (Employee employee : listOfAllEmployeesInOffice) {
 			if (employee.firstName.equals(firstName)) {
-				if (employee.lastName.equals(lastName) && withCard == true) {
+				if (employee.lastName.equals(lastName) && withCard) {
 					if (employee.idCard.equals(idCard) && !idCard.equals("empty card")) {
 						return "Has IDCard and registered in system";
 					}
