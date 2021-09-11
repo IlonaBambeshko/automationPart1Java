@@ -6,12 +6,12 @@ import by.automation.part1.lesson7.in_out_system.employees.managers.*;
 import by.automation.part1.lesson7.in_out_system.rooms.Cabinet;
 import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnter;
 import by.automation.part1.lesson7.in_out_system.system.EmployeeIsNotInOfficeException;
-import by.automation.part1.lesson7.in_out_system.system.FreePlacesValidator;
+import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
 import by.automation.part1.lesson7.in_out_system.system.Office;
 
 public class Main {
-	public static void main(String[] args) throws EmployeeHasNotAccessToEnter, EmployeeIsNotInOfficeException, FreePlacesValidator {
-		Office officeManager = new Office(15);
+	public static void main(String[] args) throws EmployeeHasNotAccessToEnter, EmployeeIsNotInOfficeException, NoAvailablePlacesException {
+		Office officeManager = new Office(10);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");
 		DeputyBoss iliaPetrov = new DeputyBoss("Ilia", "Petrov");

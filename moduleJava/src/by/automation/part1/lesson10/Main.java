@@ -17,28 +17,22 @@ public class Main {
 //		в) +375(25)123-45-67
 //		\+\d{3}\(\d{2}\)\d{3}\-\d{2}\-\d{2}
 
-		// FIXME: 9/8/2021 Does not work for text like:
-		//asdf adsf. asdfasdf . as.
 		divideTextIntoSentences();
 		System.out.println();
 
-		// FIXME: 9/8/2021 Does not work for text like:
-		//As we know an elefant a mouse
 		divideTextIntoWords();
 		System.out.println();
 
 		// Method must catch a list of strings (Task). But Okay :-)
-		joinIntoString();
+//		joinIntoString();
 	}
 
 	public static void divideTextIntoSentences() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter your text with sentences: ");
 		String str = in.nextLine();
-		Pattern pattern = Pattern.compile("\\w+?\\.");
-		Matcher matcher = pattern.matcher(str);
-		while (matcher.find()) {
-			System.out.println(str.substring(matcher.start(), matcher.end()));
+		for (String substr : str.split("(?<=[.!?])\\s*")) {
+			System.out.println(substr);
 		}
 	}
 
@@ -46,10 +40,8 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter your text with words: ");
 		String str = in.nextLine();
-		Pattern pattern = Pattern.compile("\\w+\\w");
-		Matcher matcher = pattern.matcher(str);
-		while (matcher.find()) {
-			System.out.println(str.substring(matcher.start(), matcher.end()));
+		for (String substr : str.split("\\s")) {
+			System.out.println(substr);
 		}
 	}
 

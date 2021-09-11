@@ -4,6 +4,7 @@ import by.automation.part1.lesson7.in_out_system.employees.Employee;
 
 import java.util.ArrayList;
 
+import static by.automation.part1.lesson7.in_out_system.system.FreePlacesValidator.validateFreePlacesInOffice;
 import static java.util.UUID.randomUUID;
 
 // TODO: 9/1/2021 Check access modifiers for methods [Pavel.Chachotkin]
@@ -35,23 +36,44 @@ public class Office {
 		}
 	}
 
-	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
-		employee.enterToOffice(true);
+	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		enterToOffice(employee, true);
 	}
 
-	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
+	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
 		for (Employee employee : employees) {
-			employee.enterToOffice(true);
+			enterToOffice(employee, true);
 		}
 	}
 
-	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
-		employee.enterToOffice(false);
+	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		enterToOffice(employee, false);
 	}
 
-	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnter, FreePlacesValidator {
+	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
 		for (Employee employee : employees) {
-			employee.enterToOffice(false);
+			enterToOffice(employee, false);
+		}
+	}
+
+	public void enterToOffice(Employee employee, boolean hasCard) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+		validateFreePlacesInOffice(getFreePlacesCount());
+		Office.takenPlaceInOffice++;
+		String result = Office.checkEmployeeInEmployeeList(employee.firstName, employee.lastName, employee.idCard, hasCard);
+
+		switch (result) {
+			case "Has IDCard and registered in system":
+				employee.status = Status.IN_OFFICE;
+				System.out.println("Employee entered to Office");
+				System.out.println(employee.firstName + " " + employee.lastName + " has status " + employee.status + "\n");
+				break;
+			case "Registered but have no ID card":
+				employee.status = Status.IN_OFFICE_WITHOUT_CARD;
+				System.out.println("Employee entered to Office by vahter without card");
+				System.out.println(employee.firstName + " " + employee.lastName + " has status " + employee.status + "\n");
+				break;
+			default:
+				throw new EmployeeHasNotAccessToEnter("Employee has no access to enter\n" + employee.firstName + " " + employee.lastName + " has status " + employee.status);
 		}
 	}
 
