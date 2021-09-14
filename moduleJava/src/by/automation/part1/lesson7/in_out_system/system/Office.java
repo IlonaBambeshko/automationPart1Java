@@ -9,6 +9,7 @@ import static java.util.UUID.randomUUID;
 
 // TODO: 9/1/2021 Check access modifiers for methods [Pavel.Chachotkin]
 public class Office {
+	// TODO: 9/14/2021 Check access modifiers for fields [Pavel.Chachotkin]
 	private static int maximumPlacesInOffice;
 	public static int takenPlaceInOffice = 0;
 	static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
