@@ -11,7 +11,7 @@ import by.automation.part1.lesson7.in_out_system.system.*;
 import static by.automation.part1.lesson7.in_out_system.rooms.Cabinet.getListOfEmployeesInCabinet;
 
 public class Main {
-	public static void main(String[] args) throws EmployeeHasNotAccessToEnter, EmployeeIsNotInOfficeException, NoAvailablePlacesException, NobodyInCabinetException {
+	public static void main(String[] args) throws EmployeeHasNotAccessToEnterException, EmployeeIsNotInOfficeException, NoAvailablePlacesException, NobodyInCabinetException {
 		Office officeManager = new Office(10);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");

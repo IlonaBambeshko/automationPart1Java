@@ -37,27 +37,27 @@ public class Office {
 		}
 	}
 
-	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnter(Employee employee) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		enterToOffice(employee, true);
 	}
 
-	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnter(Employee[] employees) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		for (Employee employee : employees) {
 			enterToOffice(employee, true);
 		}
 	}
 
-	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnterWithoutCard(Employee employee) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		enterToOffice(employee, false);
 	}
 
-	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void getAccessToEnterWithoutCard(Employee[] employees) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		for (Employee employee : employees) {
 			enterToOffice(employee, false);
 		}
 	}
 
-	public void enterToOffice(Employee employee, boolean hasCard) throws EmployeeHasNotAccessToEnter, NoAvailablePlacesException {
+	public void enterToOffice(Employee employee, boolean hasCard) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		validateFreePlacesInOffice(getFreePlacesCount());
 		Office.takenPlaceInOffice++;
 		String result = Office.checkEmployeeInEmployeeList(employee.firstName, employee.lastName, employee.idCard, hasCard);
@@ -74,7 +74,7 @@ public class Office {
 				System.out.println(employee.firstName + " " + employee.lastName + " has status " + employee.status + "\n");
 				break;
 			default:
-				throw new EmployeeHasNotAccessToEnter("Employee has no access to enter\n" + employee.firstName + " " + employee.lastName + " has status " + employee.status);
+				throw new EmployeeHasNotAccessToEnterException("Employee has no access to enter\n" + employee.firstName + " " + employee.lastName + " has status " + employee.status);
 		}
 	}
 
