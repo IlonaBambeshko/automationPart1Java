@@ -12,7 +12,7 @@ import static by.automation.part1.lesson7.in_out_system.rooms.Cabinet.getListOfE
 
 public class Main {
 	public static void main(String[] args) {
-		Office officeManager = new Office(4);
+		Office officeManager = new Office(15);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");
 		DeputyBoss iliaPetrov = new DeputyBoss("Ilia", "Petrov");
@@ -35,6 +35,8 @@ public class Main {
 		} catch (NoAvailablePlacesException | EmployeeHasNotAccessToEnterException e) {
 			e.printStackTrace();
 		}
+
+		officeManager.leaveOffice(ivanIvanov);
 
 		try {
 			sergeyAntonov.pushDoorToRoom123();

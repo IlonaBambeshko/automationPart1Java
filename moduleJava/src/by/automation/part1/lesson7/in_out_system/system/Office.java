@@ -27,6 +27,10 @@ public class Office {
 		return takenPlaceInOffice;
 	}
 
+	public static void setTakenPlaceInOffice(int takenPlaceInOffice) {
+		Office.takenPlaceInOffice = takenPlaceInOffice;
+	}
+
 	public void registerEmployee(Employee employee) {
 		boolean employeeRegistered = checkIfEmployeeExistsInList(employee);
 		if (employeeRegistered == true) {
@@ -51,19 +55,19 @@ public class Office {
 		return false;
 	}
 
-	public void enterToOffice(Employee employee, boolean withCard) throws
-			EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
+	public void enterToOffice(Employee employee, boolean withCard) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		validateFreePlacesInOffice();
-		Office.takenPlaceInOffice++;
 		String result = Office.checkEmployeeInEmployeeList(employee, withCard);
 
 		switch (result) {
 			case "Has IDCard and registered in system":
 				employee.setStatus(Status.IN_OFFICE);
+				setTakenPlaceInOffice(takenPlaceInOffice++);
 				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office");
 				break;
 			case "Registered but have no ID card":
 				employee.setStatus(Status.IN_OFFICE_WITHOUT_CARD);
+				setTakenPlaceInOffice(takenPlaceInOffice++);
 				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office by vahter without card");
 				break;
 			default:
@@ -89,5 +93,16 @@ public class Office {
 			}
 		}
 		return "Is not registered in system";
+	}
+
+	public void leaveOffice(Employee employee){
+		boolean employeeIsInOffice = checkIfEmployeeExistsInList(employee);
+		if (employeeIsInOffice == true) {
+			listOfAllEmployeesInOffice.remove(employee);
+			setTakenPlaceInOffice(takenPlaceInOffice--);
+			System.out.println(employee.getFirstName() + " " + employee.getLastName() + " left Office");
+		} else {
+			System.out.println("Employee " + employee.getFirstName() + " " + employee.getLastName() + " wasn't in Office");
+		}
 	}
 }
