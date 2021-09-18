@@ -11,8 +11,8 @@ import by.automation.part1.lesson7.in_out_system.system.*;
 import static by.automation.part1.lesson7.in_out_system.rooms.Cabinet.getListOfEmployeesInCabinet;
 
 public class Main {
-	public static void main(String[] args) throws EmployeeHasNotAccessToEnterException, EmployeeIsNotInOfficeException, NoAvailablePlacesException, NobodyInCabinetException {
-		Office officeManager = new Office(10);
+	public static void main(String[] args) {
+		Office officeManager = new Office(4);
 
 		Accountant ivanIvanov = new Accountant("Ivan", "Ivanov");
 		DeputyBoss iliaPetrov = new DeputyBoss("Ilia", "Petrov");
@@ -23,20 +23,32 @@ public class Main {
 		Staff dinaMarkoni = new Staff("Dina", "Markoni");
 		DevOps sashaJons = new DevOps("Sasha", "Jons");
 
-//		Employee[] employees = {ivanIvanov, iliaPetrov, alexKozlov, sergeyAntonov};
-//		officeManager.registerEmployee(employees);
-//
-//		officeManager.getAccessToEnter(ivanIvanov);
-//		officeManager.getAccessToEnterWithoutCard(iliaPetrov);
-//		officeManager.getAccessToEnterWithoutCard(yuraFilimonov);
-//		System.out.println("There are " + Office.getFreePlacesCount() + " free places in Office\n");
-//
-//		officeManager.getAccessToEnter(sergeyAntonov);
-//		sergeyAntonov.pushDoorToRoom123();
+		Employee[] employees = {ivanIvanov, iliaPetrov, alexKozlov, sergeyAntonov};
+		officeManager.registerEmployee(ivanIvanov);
+		officeManager.registerEmployee(employees);
+
+		try {
+			officeManager.enterToOffice(ivanIvanov,true);
+			officeManager.enterToOffice(iliaPetrov,true);
+			officeManager.enterToOffice(annaTitova, false);
+			officeManager.enterToOffice(sergeyAntonov, false);
+		} catch (NoAvailablePlacesException | EmployeeHasNotAccessToEnterException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			sergeyAntonov.pushDoorToRoom123();
+		} catch (EmployeeIsNotInOfficeException e) {
+			e.printStackTrace();
+		}
 
 		Cabinet<Employee> cabinet = new Cabinet<>();
-		for (Employee empl : getListOfEmployeesInCabinet()) {
-			System.out.println(empl.firstName + " " + empl.lastName + " is in Cabinet");
+		try {
+			for (Employee employee : getListOfEmployeesInCabinet()) {
+				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
+			}
+		} catch (NobodyInCabinetException e) {
+			e.printStackTrace();
 		}
 
 		Employee[] employees2 = {ivanIvanov, iliaPetrov};
@@ -44,8 +56,12 @@ public class Main {
 		Cabinet.addEmployeeToCabinet(sergeyAntonov);
 		Employee[] employees3 = {annaTitova, dinaMarkoni, sashaJons};
 		Cabinet.addEmployeeToCabinet(employees3);
-		for (Employee empl : getListOfEmployeesInCabinet()) {
-			System.out.println(empl.firstName + " " + empl.lastName + " is in Cabinet");
+		try {
+			for (Employee employee : getListOfEmployeesInCabinet()) {
+				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
+			}
+		} catch (NobodyInCabinetException e) {
+			e.printStackTrace();
 		}
 
 	}

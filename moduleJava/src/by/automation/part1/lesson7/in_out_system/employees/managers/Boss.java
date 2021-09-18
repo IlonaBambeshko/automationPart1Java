@@ -10,8 +10,8 @@ public class Boss extends Manager implements Room123 {
 
 	@Override
 	public void pushDoorToRoom123() throws EmployeeIsNotInOfficeException {
-		String messageOfSuccess = "Boss " + firstName + " " + lastName + " came to Room 123!\n";
-		switch (status) {
+		String messageOfSuccess = "Boss " + super.getFirstName() + " " + super.getLastName() + " came to Room 123!\n";
+		switch (super.getStatus()) {
 			case OUT_OF_OFFICE:
 				throw new EmployeeIsNotInOfficeException("Boss is not in office and can't come to Room 123!");
 			default:
