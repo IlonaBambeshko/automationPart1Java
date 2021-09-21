@@ -2,11 +2,12 @@ package by.automation.part1.lesson7.in_out_system.system;
 
 import by.automation.part1.lesson7.in_out_system.employees.Employee;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static by.automation.part1.lesson7.in_out_system.system.FreePlacesValidator.validateFreePlacesInOffice;
 
-public class Office {
+public class Office implements Serializable {
 	private static int maximumPlacesInOffice;
 	private static int takenPlaceInOffice = 0;
 	private static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
@@ -15,7 +16,7 @@ public class Office {
 		Office.maximumPlacesInOffice = maximumPlacesInOffice;
 	}
 
-	public static ArrayList<Employee> getListOfAllEmployeesInOffice() {
+	public ArrayList<Employee> getListOfAllEmployeesInOffice() {
 		return listOfAllEmployeesInOffice;
 	}
 
@@ -33,7 +34,7 @@ public class Office {
 
 	public void registerEmployee(Employee employee) {
 		boolean employeeRegistered = checkIfEmployeeExistsInList(employee);
-		if (employeeRegistered == true) {
+		if (employeeRegistered) {
 			System.out.println("Employee " + employee.getFirstName() + " " + employee.getLastName() + " has already been registered");
 		} else {
 			employee.setIDCard(IDCard.generateIDCard());
@@ -57,7 +58,7 @@ public class Office {
 
 	public void enterToOffice(Employee employee, boolean withCard) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
 		validateFreePlacesInOffice();
-		String result = Office.checkEmployeeInEmployeeList(employee, withCard);
+		String result = checkEmployeeInEmployeeList(employee, withCard);
 
 		switch (result) {
 			case "Has IDCard and registered in system":
@@ -75,7 +76,7 @@ public class Office {
 		}
 	}
 
-	private static String checkEmployeeInEmployeeList(Employee employee, boolean withCard) {
+	private String checkEmployeeInEmployeeList(Employee employee, boolean withCard) {
 		if (withCard) {
 			for (Employee employeeInList : getListOfAllEmployeesInOffice()) {
 				if (employeeInList.getFirstName().equals(employee.getFirstName())
@@ -97,7 +98,7 @@ public class Office {
 
 	public void leaveOffice(Employee employee){
 		boolean employeeIsInOffice = checkIfEmployeeExistsInList(employee);
-		if (employeeIsInOffice == true) {
+		if (employeeIsInOffice) {
 			listOfAllEmployeesInOffice.remove(employee);
 			setTakenPlaceInOffice(takenPlaceInOffice--);
 			System.out.println(employee.getFirstName() + " " + employee.getLastName() + " left Office");

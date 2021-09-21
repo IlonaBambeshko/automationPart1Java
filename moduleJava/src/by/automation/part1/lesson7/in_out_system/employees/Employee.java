@@ -3,7 +3,9 @@ package by.automation.part1.lesson7.in_out_system.employees;
 import by.automation.part1.lesson7.in_out_system.system.IDCard;
 import by.automation.part1.lesson7.in_out_system.system.Status;
 
-public abstract class Employee {
+import java.io.Serializable;
+
+public abstract class Employee implements Serializable {
 	private final String firstName;
 	private final String lastName;
 	private IDCard idCard;

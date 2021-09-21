@@ -1,7 +1,7 @@
 package by.automation.part1.lesson13.players_and_cards;
 
 public class Player1 extends Thread {
-	static int card = 10;
+	int card = 10;
 	Table table;
 
 	public Player1(Table table) {
