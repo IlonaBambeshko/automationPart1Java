@@ -1,20 +1,17 @@
 package by.automation.part1.lesson13.players_and_cards;
 
-import static java.lang.Thread.sleep;
-
 public class Table {
-	static int cardsOnTheTable = 0;
+	private int cardsOnTheTable;
 
-//	synchronized void get() {
-////		try {
-////			sleep(1000);
-////		} catch (InterruptedException e) {
-////			e.printStackTrace();
-////		}
-//		System.out.println("There are " + cardsOnTheTable + " cards on the table");
-//
-//		System.out.println("Players have " + (Player1.card)  + " cards" );
-//		System.out.println();
-//		cardsOnTheTable = 0;
-//	}
+	public void setCardsOnTheTable(){
+		this.cardsOnTheTable = 0;
+	}
+
+	public void putCardOnTheTable(int cards){
+		this.cardsOnTheTable = this.cardsOnTheTable + cards;
+	}
+
+	public int getCardsOnTheTable(){
+		return this.cardsOnTheTable;
+	}
 }

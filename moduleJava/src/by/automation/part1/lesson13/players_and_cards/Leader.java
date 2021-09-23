@@ -7,36 +7,22 @@ public class Leader extends Thread {
 		this.table = table;
 	}
 
-//	public synchronized void run() {
-//		try {
-//			sleep(1000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("Clean table");
-//		System.out.println("Players have " + (Player1.card)  + " cards" );
-//		System.out.println();
-//		Table.cardsOnTheTable = 0;
-
-
-//		@Override
-//		public void run() {
-//			int currentCount;
-//			do {
-//				try {
-//					Thread.sleep(1000);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//				currentCount = table.getAllCards();
-//				if (currentCount == 0) {
-//					System.out.println("Got cards: " + currentCount);
-//				} else {
-//					System.out.println("Have not cards on table");
-//				}
-//			} while (currentCount > 0);
-//		}
-//	}
-
-//	}
+	@Override
+	public void run() {
+		int currentCount;
+		do {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			currentCount = table.getCardsOnTheTable();
+			if (currentCount == 0) {
+				System.out.println("Finished. Got cards: " + currentCount);
+			} else {
+				System.out.println("Clean table. Have no cards on table\n");
+				table.setCardsOnTheTable();
+			}
+		} while (currentCount > 0);
+	}
 }
