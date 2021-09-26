@@ -43,6 +43,7 @@ public class Office implements Serializable {
 		}
 	}
 
+	// TODO: 9/26/2021 I think we must rename method with multiple count for employee [Pavel.Chachotkin]
 	public void registerEmployee(Employee[] employees) {
 		for (Employee employee : employees) {
 			registerEmployee(employee);
@@ -50,7 +51,7 @@ public class Office implements Serializable {
 	}
 
 	private boolean checkIfEmployeeExistsInList(Employee employee) {
-		if (listOfAllEmployeesInOffice.contains(employee)) {
+		if (listOfAllEmployeesInOffice.contains(employee)) { // TODO: 9/26/2021 Does it works for 2 object of employee with same names and lastNames? [Pavel.Chachotkin]
 			return true;
 		}
 		return false;
@@ -72,6 +73,7 @@ public class Office implements Serializable {
 				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office by vahter without card");
 				break;
 			default:
+				// TODO: 9/26/2021 Move exception to Validator and catch here [Pavel.Chachotkin]
 				throw new EmployeeHasNotAccessToEnterException(employee.getFirstName() + " " + employee.getLastName() + " has no access to enter");
 		}
 	}

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO: 9/26/2021 Remove arrays [Pavel.Chachotkin]
+// TODO: 9/26/2021 Receive lists instead arrays [Pavel.Chachotkin]
+// TODO: 9/26/2021 Remove OutOfDated constructors [Pavel.Chachotkin]
 public class Cabinet<T extends Employee> {
 	public T employee;
 	public T[] employees;
