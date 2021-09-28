@@ -4,13 +4,15 @@ import by.automation.part1.lesson7.in_out_system.employees.Employee;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-import static by.automation.part1.lesson7.in_out_system.system.FreePlacesValidator.validateFreePlacesInOffice;
+import static by.automation.part1.lesson7.in_out_system.system.Validator.validateFreePlacesInOffice;
+import static by.automation.part1.lesson7.in_out_system.system.Validator.employeeHasNotAccessToEnter;
 
 public class Office implements Serializable {
 	private static int maximumPlacesInOffice;
 	private static int takenPlaceInOffice = 0;
-	private static ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
+	private static final ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 
 	public Office(int maximumPlacesInOffice) {
 		Office.maximumPlacesInOffice = maximumPlacesInOffice;
@@ -43,8 +45,7 @@ public class Office implements Serializable {
 		}
 	}
 
-	// TODO: 9/26/2021 I think we must rename method with multiple count for employee [Pavel.Chachotkin]
-	public void registerEmployee(Employee[] employees) {
+	public void registerEmployees(List<Employee> employees) {
 		for (Employee employee : employees) {
 			registerEmployee(employee);
 		}
@@ -73,8 +74,7 @@ public class Office implements Serializable {
 				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office by vahter without card");
 				break;
 			default:
-				// TODO: 9/26/2021 Move exception to Validator and catch here [Pavel.Chachotkin]
-				throw new EmployeeHasNotAccessToEnterException(employee.getFirstName() + " " + employee.getLastName() + " has no access to enter");
+				employeeHasNotAccessToEnter(employee);
 		}
 	}
 

@@ -9,6 +9,8 @@ import by.automation.part1.lesson7.in_out_system.rooms.Cabinet;
 import by.automation.part1.lesson7.in_out_system.system.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static by.automation.part1.lesson7.in_out_system.rooms.Cabinet.getListOfEmployeesInCabinet;
 
@@ -25,9 +27,13 @@ public class Main {
 		Staff dinaMarkoni = new Staff("Dina", "Markoni");
 		DevOps sashaJons = new DevOps("Sasha", "Jons");
 
-		Employee[] employees = {ivanIvanov, iliaPetrov, alexKozlov, sergeyAntonov};
+		List<Employee> employees = new ArrayList<>();
+		employees.add(ivanIvanov);
+		employees.add(iliaPetrov);
+		employees.add(alexKozlov);
+		employees.add(sergeyAntonov);
 		officeManager.registerEmployee(ivanIvanov);
-		officeManager.registerEmployee(employees);
+		officeManager.registerEmployees(employees);
 
 		try {
 			officeManager.enterToOffice(ivanIvanov,true);
@@ -57,33 +63,35 @@ public class Main {
 			System.out.println("Deserialized: "+ employee.getFirstName() + " " + employee.getLastName() + " in Office");
         }
 
-//		try {
-//			sergeyAntonov.pushDoorToRoom123();
-//		} catch (EmployeeIsNotInOfficeException e) {
-//			e.printStackTrace();
-//		}
-//
-//		Cabinet<Employee> cabinet = new Cabinet<>();
-//		try {
-//			for (Employee employee : getListOfEmployeesInCabinet()) {
-//				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
-//			}
-//		} catch (NobodyInCabinetException e) {
-//			e.printStackTrace();
-//		}
-//
-//		Employee[] employees2 = {ivanIvanov, iliaPetrov};
-//		Cabinet<Employee> cabinet2 = new Cabinet<>(employees2);
-//		Cabinet.addEmployeeToCabinet(sergeyAntonov);
-//		Employee[] employees3 = {annaTitova, dinaMarkoni, sashaJons};
-//		Cabinet.addEmployeeToCabinet(employees3);
-//		try {
-//			for (Employee employee : getListOfEmployeesInCabinet()) {
-//				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
-//			}
-//		} catch (NobodyInCabinetException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			sergeyAntonov.pushDoorToRoom123();
+		} catch (EmployeeIsNotInOfficeException e) {
+			e.printStackTrace();
+		}
+
+		Cabinet<Employee> cabinet = new Cabinet();
+		try {
+			for (Employee employee : getListOfEmployeesInCabinet()) {
+				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
+			}
+		} catch (NobodyInCabinetException e) {
+			e.printStackTrace();
+		}
+
+		Cabinet.addEmployeeToCabinet(sergeyAntonov);
+
+		List<Employee> employees3 = new ArrayList<>();
+		employees3.add(annaTitova);
+		employees3.add(dinaMarkoni);
+		employees3.add(sashaJons);
+		Cabinet.addEmployeeToCabinet(employees3);
+		try {
+			for (Employee employee : getListOfEmployeesInCabinet()) {
+				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
+			}
+		} catch (NobodyInCabinetException e) {
+			e.printStackTrace();
+		}
 
 	}
 }
