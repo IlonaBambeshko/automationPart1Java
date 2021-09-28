@@ -52,10 +52,7 @@ public class Office implements Serializable {
 	}
 
 	private boolean checkIfEmployeeExistsInList(Employee employee) {
-		if (listOfAllEmployeesInOffice.contains(employee)) { // TODO: 9/26/2021 Does it works for 2 object of employee with same names and lastNames? [Pavel.Chachotkin]
-			return true;
-		}
-		return false;
+		return listOfAllEmployeesInOffice.contains(employee);
 	}
 
 	public void enterToOffice(Employee employee, boolean withCard) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
@@ -81,18 +78,16 @@ public class Office implements Serializable {
 	private String checkEmployeeInEmployeeList(Employee employee, boolean withCard) {
 		if (withCard) {
 			for (Employee employeeInList : getListOfAllEmployeesInOffice()) {
-				if (employeeInList.getFirstName().equals(employee.getFirstName())
-						&& employeeInList.getLastName().equals(employee.getLastName())
-						&& employeeInList.getIDCard().equals(employee.getIDCard())) {
+				if (employeeInList.equals(employee)) {
 					return "Has IDCard and registered in system";
 				}
 			}
 			return "Is not registered in system";
 		} else {
 			for (Employee employeeInList : getListOfAllEmployeesInOffice()) {
-				if (employeeInList.getFirstName().equals(employee.getFirstName())
-						&& employeeInList.getLastName().equals(employee.getLastName()))
+				if (employeeInList.equals(employee)) {
 					return "Registered but have no ID card";
+				}
 			}
 		}
 		return "Is not registered in system";
