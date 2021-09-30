@@ -41,66 +41,66 @@ public class Main {
 
 		// enter to Office
 		try {
-			officeManager.enterToOffice(ivanIvanov, true);
-			officeManager.enterToOffice(iliaPetrov, true);
-			officeManager.enterToOffice(annaTitova, false);
-			officeManager.enterToOffice(sergeyAntonov, false);
+			officeManager.enterToOffice(ivanIvanov);
+			officeManager.enterToOffice(iliaPetrov);
+			officeManager.forceEnterToOffice(sergeyAntonov);
+			officeManager.enterToOffice(annaTitova);
 		} catch (NoAvailablePlacesException | EmployeeHasNotAccessToEnterException e) {
 			e.printStackTrace();
 		}
 
-		// leave Office
-		officeManager.leaveOffice(ivanIvanov);
-
-		// region Serialization
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("office.obraz"))) {
-			oos.writeObject(officeManager);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// region Deserialization
-		Office officeManagerNew = null;
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("office.obraz"))) {
-			officeManagerNew = (Office) ois.readObject();
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		for (Employee employee : officeManagerNew.getListOfAllEmployeesInOffice()) {
-			System.out.println("Deserialized: " + employee.getFirstName() + " " + employee.getLastName() + " in Office");
-		}
-
-		// Room123
-		try {
-			sergeyAntonov.pushDoorToRoom123();
-		} catch (EmployeeIsNotInOfficeException e) {
-			e.printStackTrace();
-		}
-
-		// Cabinet
-		Cabinet<Employee> cabinet = new Cabinet();
-		try {
-			for (Employee employee : getListOfEmployeesInCabinet()) {
-				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
-			}
-		} catch (NobodyInCabinetException e) {
-			e.printStackTrace();
-		}
-		Cabinet.addEmployeeToCabinet(sergeyAntonov);
-
-		List<Employee> employees3 = new ArrayList<>();
-		employees3.add(annaTitova);
-		employees3.add(dinaMarkoni);
-		employees3.add(sashaJons);
-
-		Cabinet.addEmployeeToCabinet(employees3);
-		try {
-			for (Employee employee : getListOfEmployeesInCabinet()) {
-				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
-			}
-		} catch (NobodyInCabinetException e) {
-			e.printStackTrace();
-		}
+//		// leave Office
+//		officeManager.leaveOffice(ivanIvanov);
+//
+//		// region Serialization
+//		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("office.obraz"))) {
+//			oos.writeObject(officeManager);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		// region Deserialization
+//		Office officeManagerNew = null;
+//		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("office.obraz"))) {
+//			officeManagerNew = (Office) ois.readObject();
+//		} catch (IOException | ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		for (Employee employee : officeManagerNew.getListOfAllEmployeesInOffice()) {
+//			System.out.println("Deserialized: " + employee.getFirstName() + " " + employee.getLastName() + " in Office");
+//		}
+//
+//		// Room123
+//		try {
+//			sergeyAntonov.pushDoorToRoom123();
+//		} catch (EmployeeIsNotInOfficeException e) {
+//			e.printStackTrace();
+//		}
+//
+//		// Cabinet
+//		Cabinet<Employee> cabinet = new Cabinet();
+//		try {
+//			for (Employee employee : getListOfEmployeesInCabinet()) {
+//				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
+//			}
+//		} catch (NobodyInCabinetException e) {
+//			e.printStackTrace();
+//		}
+//		Cabinet.addEmployeeToCabinet(sergeyAntonov);
+//
+//		List<Employee> employees3 = new ArrayList<>();
+//		employees3.add(annaTitova);
+//		employees3.add(dinaMarkoni);
+//		employees3.add(sashaJons);
+//
+//		Cabinet.addEmployeeToCabinet(employees3);
+//		try {
+//			for (Employee employee : getListOfEmployeesInCabinet()) {
+//				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " is in Cabinet");
+//			}
+//		} catch (NobodyInCabinetException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 }

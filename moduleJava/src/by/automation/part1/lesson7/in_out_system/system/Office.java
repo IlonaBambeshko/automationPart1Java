@@ -55,45 +55,39 @@ public class Office implements Serializable {
 		return listOfAllEmployeesInOffice.contains(employee);
 	}
 
-	public void enterToOffice(Employee employee, boolean withCard) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
+	public void forceEnterToOffice(Employee employee) throws NoAvailablePlacesException, EmployeeHasNotAccessToEnterException {
 		validateFreePlacesInOffice();
-		String result = checkEmployeeInEmployeeList(employee, withCard);
-
-		switch (result) {
-			case "Has IDCard and registered in system":
-				employee.setStatus(Status.IN_OFFICE);
-				setTakenPlaceInOffice(takenPlaceInOffice++);
-				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office");
-				break;
-			case "Registered but have no ID card":
-				employee.setStatus(Status.IN_OFFICE_WITHOUT_CARD);
-				setTakenPlaceInOffice(takenPlaceInOffice++);
-				System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office by vahter without card");
-				break;
-			default:
-				employeeHasNotAccessToEnter(employee);
-		}
-	}
-
-	private String checkEmployeeInEmployeeList(Employee employee, boolean withCard) {
-		if (withCard) {
-			for (Employee employeeInList : getListOfAllEmployeesInOffice()) {
-				if (employeeInList.equals(employee)) {
-					return "Has IDCard and registered in system";
-				}
-			}
-			return "Is not registered in system";
+		if (getListOfAllEmployeesInOffice().contains(employee)) {
+			employee.setStatus(Status.IN_OFFICE_WITHOUT_CARD);
+			setTakenPlaceInOffice(takenPlaceInOffice++);
+			System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office by vahter without card");
 		} else {
-			for (Employee employeeInList : getListOfAllEmployeesInOffice()) {
-				if (employeeInList.equals(employee)) {
-					return "Registered but have no ID card";
-				}
-			}
+			employeeHasNotAccessToEnter(employee);
 		}
-		return "Is not registered in system";
+
 	}
 
-	public void leaveOffice(Employee employee){
+	public void enterToOffice(Employee employee) throws EmployeeHasNotAccessToEnterException, NoAvailablePlacesException {
+		validateFreePlacesInOffice();
+		if (checkedEmployeeInEmployeeList(employee)) {
+			employee.setStatus(Status.IN_OFFICE);
+			setTakenPlaceInOffice(takenPlaceInOffice++);
+			System.out.println(employee.getFirstName() + " " + employee.getLastName() + " entered to Office");
+		} else {
+			employeeHasNotAccessToEnter(employee);
+		}
+	}
+
+	private boolean checkedEmployeeInEmployeeList(Employee employee) {
+		for (Employee employeeInList : getListOfAllEmployeesInOffice()) {
+			if (employeeInList.equals(employee)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void leaveOffice(Employee employee) {
 		boolean employeeIsInOffice = checkIfEmployeeExistsInList(employee);
 		if (employeeIsInOffice) {
 			listOfAllEmployeesInOffice.remove(employee);
