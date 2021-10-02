@@ -35,6 +35,7 @@ public class Office implements Serializable {
 	}
 
 	public void registerEmployee(Employee employee) {
+		// TODO: 10/2/2021 Add check for max employees [Pavel.Chachotkin]
 		boolean employeeRegistered = checkIfEmployeeExistsInList(employee);
 		if (employeeRegistered) {
 			System.out.println("Employee " + employee.getFirstName() + " " + employee.getLastName() + " has already been registered");
