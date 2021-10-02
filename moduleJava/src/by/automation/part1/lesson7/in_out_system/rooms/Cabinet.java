@@ -10,7 +10,7 @@ public class Cabinet<T extends Employee> {
 	static List<Employee> listOfEmployeesInCabinet = new ArrayList<>();
 
 	public static List<Employee> getListOfEmployeesInCabinet() throws NobodyInCabinetException {
-		if (listOfEmployeesInCabinet.isEmpty()){
+		if (listOfEmployeesInCabinet.isEmpty()) {
 			throw new NobodyInCabinetException("Nobody is in Cabinet!");
 		}
 		return listOfEmployeesInCabinet;

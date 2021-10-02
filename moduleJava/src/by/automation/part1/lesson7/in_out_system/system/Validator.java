@@ -4,7 +4,7 @@ import by.automation.part1.lesson7.in_out_system.employees.Employee;
 
 public class Validator {
 
-	public static int availablePlacesCount(){
+	public static int availablePlacesCount() {
 		return Office.getMaximumPlacesInOffice() - Office.getTakenPlaceInOffice();
 	}
 

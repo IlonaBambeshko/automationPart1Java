@@ -3,9 +3,8 @@ package by.automation.part1.lesson13.players_and_cards;
 import static java.lang.Thread.sleep;
 
 public class Player implements Runnable {
-	int card = 10;
 	private static int allCards = 0;
-
+	int card = 10;
 	Table table;
 
 	public Player(Table table) {
@@ -20,7 +19,7 @@ public class Player implements Runnable {
 	@Override
 	public void run() {
 		while (card != 0) {
-			synchronized (table){
+			synchronized (table) {
 				card--;
 				allCards--;
 				table.putCardOnTheTable(1);

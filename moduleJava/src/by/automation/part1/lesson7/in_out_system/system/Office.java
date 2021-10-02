@@ -6,20 +6,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.automation.part1.lesson7.in_out_system.system.Validator.validateFreePlacesInOffice;
 import static by.automation.part1.lesson7.in_out_system.system.Validator.employeeHasNotAccessToEnter;
+import static by.automation.part1.lesson7.in_out_system.system.Validator.validateFreePlacesInOffice;
 
 public class Office implements Serializable {
+	private static final ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 	private static int maximumPlacesInOffice;
 	private static int takenPlaceInOffice = 0;
-	private static final ArrayList<Employee> listOfAllEmployeesInOffice = new ArrayList<>();
 
 	public Office(int maximumPlacesInOffice) {
 		Office.maximumPlacesInOffice = maximumPlacesInOffice;
-	}
-
-	public ArrayList<Employee> getListOfAllEmployeesInOffice() {
-		return listOfAllEmployeesInOffice;
 	}
 
 	public static int getMaximumPlacesInOffice() {
@@ -32,6 +28,10 @@ public class Office implements Serializable {
 
 	public static void setTakenPlaceInOffice(int takenPlaceInOffice) {
 		Office.takenPlaceInOffice = takenPlaceInOffice;
+	}
+
+	public ArrayList<Employee> getListOfAllEmployeesInOffice() {
+		return listOfAllEmployeesInOffice;
 	}
 
 	public void registerEmployee(Employee employee) {

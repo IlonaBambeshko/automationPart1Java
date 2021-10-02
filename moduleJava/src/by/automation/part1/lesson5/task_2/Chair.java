@@ -2,56 +2,56 @@ package by.automation.part1.lesson5.task_2;
 
 public class Chair {
 
-    private final String model;
-    private final String color;
+	private final String model;
+	private final String color;
 
-    public Chair(String model, String color) {
-        this.model = model;
-        this.color = color;
-    }
+	public Chair(String model, String color) {
+		this.model = model;
+		this.color = color;
+	}
 
-    public void stay() {
-        System.out.println(color + " " + model + " chair stays");
-    }
+	public void stay() {
+		System.out.println(color + " " + model + " chair stays");
+	}
 
-    public void fall() {
-        System.out.println(color + " " + model + " chair has fallen down...");
-    }
+	public void fall() {
+		System.out.println(color + " " + model + " chair has fallen down...");
+	}
 
-    public class ChairLeg {
-        public int legQuantity;
+	public class ChairLeg {
+		public int legQuantity;
 
-        ChairLeg() {
-            legQuantity = 4;
-        }
+		ChairLeg() {
+			legQuantity = 4;
+		}
 
-        public ChairLeg(int legQuantity) {
-            this.legQuantity = legQuantity;
-        }
+		public ChairLeg(int legQuantity) {
+			this.legQuantity = legQuantity;
+		}
 
-        public int getQuantity() {
-            return legQuantity;
-        }
+		public int getQuantity() {
+			return legQuantity;
+		}
 
-    }
+	}
 
-    public class ChairSeat {
-        public void up() {
-            System.out.println("Seat has set up!");
-        }
+	public class ChairSeat {
+		public void up() {
+			System.out.println("Seat has set up!");
+		}
 
-        public void down() {
-            System.out.println("Seat has set down!");
-        }
-    }
+		public void down() {
+			System.out.println("Seat has set down!");
+		}
+	}
 
-    public class ChairBack {
-        public void up() {
-            System.out.println("Chair back is up");
-        }
+	public class ChairBack {
+		public void up() {
+			System.out.println("Chair back is up");
+		}
 
-        public void down() {
-            System.out.println("Chair back is down");
-        }
-    }
+		public void down() {
+			System.out.println("Chair back is down");
+		}
+	}
 }

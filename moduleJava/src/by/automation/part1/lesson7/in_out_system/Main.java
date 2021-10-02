@@ -4,15 +4,16 @@ import by.automation.part1.lesson7.in_out_system.employees.DevOps;
 import by.automation.part1.lesson7.in_out_system.employees.Employee;
 import by.automation.part1.lesson7.in_out_system.employees.ITSpecialist;
 import by.automation.part1.lesson7.in_out_system.employees.Staff;
-import by.automation.part1.lesson7.in_out_system.employees.managers.*;
-import by.automation.part1.lesson7.in_out_system.rooms.Cabinet;
-import by.automation.part1.lesson7.in_out_system.system.*;
+import by.automation.part1.lesson7.in_out_system.employees.managers.Accountant;
+import by.automation.part1.lesson7.in_out_system.employees.managers.Boss;
+import by.automation.part1.lesson7.in_out_system.employees.managers.DeputyBoss;
+import by.automation.part1.lesson7.in_out_system.employees.managers.TeamLead;
+import by.automation.part1.lesson7.in_out_system.system.EmployeeHasNotAccessToEnterException;
+import by.automation.part1.lesson7.in_out_system.system.NoAvailablePlacesException;
+import by.automation.part1.lesson7.in_out_system.system.Office;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static by.automation.part1.lesson7.in_out_system.rooms.Cabinet.getListOfEmployeesInCabinet;
 
 public class Main {
 	public static void main(String[] args) {
