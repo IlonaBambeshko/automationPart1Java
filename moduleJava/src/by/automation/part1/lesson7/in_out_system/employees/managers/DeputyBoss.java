@@ -1,7 +1,7 @@
 package by.automation.part1.lesson7.in_out_system.employees.managers;
 
-import by.automation.part1.lesson7.in_out_system.rooms.Room123;
-import by.automation.part1.lesson7.in_out_system.system.EmployeeIsNotInOfficeException;
+import by.automation.part1.lesson7.in_out_system.system.rooms.Room123;
+import by.automation.part1.lesson7.in_out_system.system.validation.EmployeeIsNotInOfficeException;
 
 public class DeputyBoss extends Manager implements Room123 {
 	public DeputyBoss(String firstName, String lastName) {

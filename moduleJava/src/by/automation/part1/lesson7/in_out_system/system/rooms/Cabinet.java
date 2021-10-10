@@ -1,7 +1,7 @@
-package by.automation.part1.lesson7.in_out_system.rooms;
+package by.automation.part1.lesson7.in_out_system.system.rooms;
 
 import by.automation.part1.lesson7.in_out_system.employees.Employee;
-import by.automation.part1.lesson7.in_out_system.system.NobodyInCabinetException;
+import by.automation.part1.lesson7.in_out_system.system.validation.NobodyInCabinetException;
 
 import java.util.ArrayList;
 import java.util.List;

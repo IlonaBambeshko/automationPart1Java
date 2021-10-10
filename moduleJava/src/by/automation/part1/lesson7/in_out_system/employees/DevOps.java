@@ -1,6 +1,6 @@
 package by.automation.part1.lesson7.in_out_system.employees;
 
-import by.automation.part1.lesson7.in_out_system.rooms.Room123;
+import by.automation.part1.lesson7.in_out_system.system.rooms.Room123;
 
 public class DevOps extends Employee implements Room123 {
 	public DevOps(String firstName, String lastName) {
